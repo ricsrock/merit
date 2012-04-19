@@ -1,0 +1,11 @@
+<table class="table table-bordered table-condensed table-overview">
+  <%- attributes.each do |attribute| -%>
+	  <%%= table_row("<%= attribute.name.capitalize %>:",@<%= singular_table_name %>.<%= attribute.name %>) %>
+  <%- end -%>
+</table>
+
+<div class="form-actions">
+  <%%= link_to 'Back', <%= plural_table_name %>_path, :class => 'btn'  %>
+  <%%= link_to 'Edit', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), :class => 'btn' %>
+  <%%= link_to 'Delete', <%= singular_table_name %>_path(@<%= singular_table_name %>), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

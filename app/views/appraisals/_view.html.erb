@@ -1,0 +1,66 @@
+<% choices = ['1','2','3','4','5','omit'] %>
+
+<h4>Viewing Appraisal: <%= @appraisal.name %></h4>
+
+<fieldset><legend><%= @appraisal.name %></legend>
+	<ul>
+		<li>Employee: <%= link_to @appraisal.employee.full_name, person_path(@appraisal.employee) %></li>
+		<li>Appraisal Form: <%= @appraisal.appraisal_form.name %></li>
+		<li>Appraiser: <%= @appraisal.appraiser.full_name %></li>
+	</ul>
+</fieldset>
+
+<% @appraisal.appraisal_form.sections.each do |section| %>
+	<h3><%= section.name %></h3><hr>
+	<ol>
+		<% section.questions.each do |question| %>
+			<li>
+				<%= question.form_text %>
+				<% response =  @appraisal.response_for_this_question(question.id) %>
+				<div style="float:right;">
+					<% choices.each do |choice| %>
+						<%= radio_button_tag("response_#{response.id}", choice, response.answer == choice ? true : false) %>
+					<% end %>
+				</div>
+				<div style="float:none;clear:both;">
+					&nbsp;
+				</div>
+			</li>
+		<% end %>
+	</ol>
+	<div class="well">
+		Section Comment: <% Comment.for_appraisal_either_type(@appraisal.id).for_section(section.id).all.each do |c| %>
+							<%= c.note %>
+						 <% end %>
+	</div>
+<% end %>
+
+<% @appraisal.appraisal_form.feedback_topics.each do |fbt| %>
+	<div class="well">
+		<h4><%= fbt.form_text %></h4>
+		Feedback Topic Comment: <% Comment.for_appraisal_either_type(@appraisal.id).for_feedback_topic(fbt.id).all.each do |c| %>
+							<%= c.note %>
+						 <% end %>
+	</div>
+<% end %>
+
+<table class="table table-bordered">
+	<tr>
+		<th>Raw Score</th>
+		<th>Total Possible</th>
+		<th>% Score</th>
+		<th>5-Point Score</th>
+	</tr>
+	<tr>
+		<td><%= @appraisal.raw_score %></td>
+		<td><%= @appraisal.raw_possible %></td>
+		<td><%= number_to_percentage(@appraisal.raw_percentage, :precision => 0) %></td>
+		<td><%= @appraisal.raw_5_point %></td>
+	</tr>
+</table>
+
+<div class="well">
+	Summary Comment: <% Comment.for_appraisal(@appraisal.id).all.each do |s| %>
+						<%= s.note %>
+					 <% end %>
+</div>

@@ -1,0 +1,61 @@
+<fieldset><legend>Performing Appraisal</legend>
+	<ul>
+		<li>
+			Appraisal Form: <%= @appraisal.appraisal_form.name %>
+		</li>
+		<li>
+			Employee: <%= @appraisal.employee.full_name %>
+		</li>
+		<li>
+			Position(s): <%= @appraisal.employee.current_employments.collect {|i| i.position.name.to_s + ' (' + i.store.name.to_s + ')'}.to_sentence %>
+		</li>
+		<li>
+			Appraiser: <%= @appraisal.appraiser.full_name %>
+		</li>
+	</ul>
+</fieldset><hr>
+
+<%= simple_form_for(@appraisal, :html => { :class => 'form-horizontal' })  do |f| %>
+	<% @appraisal.appraisal_form.sections.each do |section| %>
+		<h3><%= section.name %></h3><hr>
+		<ol class="well">
+			<% section.questions.each do |question| %>
+					<li style="margin-left:3em;">
+						<div><%= question.form_text %></div>
+						<div style="float:right;">
+							<%= f.simple_fields_for :responses, @appraisal.response_for_this_question(question.id), :class => 'inline' do |rf| %>
+								<%= rf.input :answer, :as => :radio, :collection => ['1', '2', '3', '4', '5', 'omit'], :label_html_options => {:class => 'inline'} %>
+							<% end %>
+						</div>
+						<div style="float:none;clear:both">
+				
+						</div>
+					</li>
+			<% end %>
+		</ol>
+		<div id="section_<%= section.id %>_comments" class="well" style="margin-left:25px;">
+			<%= f.simple_fields_for :comments, @appraisal.comment_for_this_section(section.id) do |cf| %>
+				<%= cf.input :note, :as => :text, :label => 'Section Comment', :input_html => {:style => 'width:600px;height:50px;'} %>
+				<%= cf.input :comment_type, :as => :hidden, :input_html => {:value => 'Section'} %>
+			<% end %>
+		</div>
+	<% end %>
+	<h4 style="margin-left:25px;">Feedback Topics</h4>
+	<% @appraisal.appraisal_form.feedback_topics.each do |fbt| %>
+		<div class="well" style="margin-left:25px;">
+			<div style="margin-left:160px;"><%= fbt.form_text %></div>
+			<%= f.simple_fields_for :comments, @appraisal.comment_for_this_feedback_topic(fbt.id) do |fbtf| %>
+				<%= fbtf.input :note, :as => :text, :label => 'Feedback Topic Comment', :input_html => {:style => 'width:600px;height:50px;'} %>
+				<%= fbtf.input :comment_type, :as => :hidden, :input_html => {:value => 'FeedbackTopic'} %>
+			<% end %>
+		</div>
+	<% end %>
+	<div class="well" style="margin-left:25px;">
+		<%= f.simple_fields_for :comments, @appraisal.comment_for_this_appraisal do |cf| %>
+			<%= cf.input :note, :as => :text, :label => 'Summary Comment', :input_html => {:style => 'width:600px;height:50px;'} %>
+			<%= cf.input :comment_type, :as => :hidden, :input_html => {:value => 'Appraisal'} %>
+		<% end %>
+	</div>
+	<div style="float:none;clear:both;"><%= f.button :submit, :class => 'btn btn-primary' %></div>
+<% end %>
+	

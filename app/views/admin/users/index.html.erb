@@ -1,0 +1,41 @@
+<h1>Listing Users</h1>
+
+<table class="table table-striped" id="sortable_table">
+  <thead>
+	  <tr>
+			<th>First_name</th>
+			<th>Last_name</th>
+			<th>Login</th>
+			<th>Role(s)</th>
+			<th>Email</th>
+			<th>Person Record</th>
+			<th># Sign-Ins</th>
+			<th>Confirmed At</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @users.each do |user| %>
+	  <tr>
+	    <td><%= link_to user.first_name, admin_user_path(user) %></td>
+	    <td><%= user.last_name %></td>
+	    <td><%= user.login %></td>
+		<td><%= user.roles.collect {|r| r.name}.to_sentence %></td>
+	    <td><%= user.email %></td>
+		<td><%= person_indicator(user) %></td>
+		<td><%= user.sign_in_count %></td>
+		<td><%= user.confirmed_at.to_time.to_s(:short) rescue nil %></td>
+	    <td><%= link_to 'Edit', edit_admin_user_path(user), :class => 'btn btn-mini' %>
+	    	<%= link_to 'Destroy', admin_user_path(user), confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
+			<% unless user.confirmed? %>
+				<%= link_to 'Confirm', confirm_admin_user_path(user), :class => 'btn btn-mini' %>
+			<% end %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New User", new_admin_user_path, :class => 'btn btn-primary'  %>

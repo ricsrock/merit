@@ -1,0 +1,26 @@
+<p>
+  <b>Name:</b>
+  <%= @question.name %>
+</p>
+
+<p>
+  <b>Form text:</b>
+  <%= @question.form_text %>
+</p>
+
+<p>
+  <b>Created by:</b>
+  <%= @question.created_by %>
+</p>
+
+<p>
+  <b>Updated by:</b>
+  <%= @question.updated_by %>
+</p>
+
+
+<div class="form-actions">
+  <%= link_to 'Back', admin_questions_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_admin_question_path(@question), :class => 'btn' %>
+  <%= link_to 'Delete', admin_question_path(@question), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

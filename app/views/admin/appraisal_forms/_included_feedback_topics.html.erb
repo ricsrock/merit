@@ -1,0 +1,14 @@
+<fieldset>
+	<legend>
+		Included Feedback Topics
+		<p>These feedback topics will be included in this appraisal form.</p>
+	</legend>
+</fieldset>
+<% @appraisal_form.feedback_topics.each do |fbt| %>
+	<div style="float:none;clear:both;">
+		<span style="float:left;margin-right:5px;">
+			<%= link_to(content_tag(:i, nil, :class => "icon-backward"), remove_feedback_topic_from_admin_appraisal_form_path(@appraisal_form, :feedback_topic_id => fbt), :remote => true) %>
+		</span>
+		<span style="float:left;"><%= fbt.name %></span>
+	</div>
+<% end %>

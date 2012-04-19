@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  form_text: MyText
+  created_by: MyString
+  updated_by: MyString
+
+two:
+  name: MyString
+  form_text: MyText
+  created_by: MyString
+  updated_by: MyString

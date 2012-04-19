@@ -1,0 +1,22 @@
+<table class="table table-bordered table-condensed table-overview">
+	  <%= table_row("Name:",@appraisal.name) %>
+	  <%= table_row("Appraisal Form:",@appraisal.appraisal_form.name) %>
+	  <%= table_row("Employee:", link_to(@appraisal.employee.full_name, person_path(@appraisal.employee))) %>
+	  <%= table_row("Appraiser:",@appraisal.appraiser.full_name) %>
+	  <%= table_row("Reviewer:",@appraisal.reviewer.full_name) rescue nil %>
+	  <%= table_row("Review Period:",@appraisal.review_period.name) %>
+	  <%= table_row("Percent Completed:", number_to_percentage(@appraisal.percent_completed)) %>
+	  <%= table_row("Percent Complete:", number_to_percentage(@appraisal.percent_complete)) %>
+	  <%= table_row("Raw Score:", @appraisal.raw_score) %>
+	  <%= table_row("Raw Possible:", @appraisal.raw_possible) %>
+	  <%= table_row("Raw Percentage:", @appraisal.raw_percentage) %>
+	  <%= table_row("Raw 5-Point Score:", @appraisal.raw_5_point) %>
+	  <%= render :partial => "shared/stamps", :locals => {:resource => @appraisal} %>
+</table>
+
+<div class="form-actions">
+  <%= link_to 'Index', appraisals_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_appraisal_path(@appraisal), :class => 'btn' %>
+  <%= link_to 'Delete', appraisal_path(@appraisal), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+  <%= link_to 'Perform', perform_appraisal_path(@appraisal), :class => 'btn btn-success' %>
+</div>

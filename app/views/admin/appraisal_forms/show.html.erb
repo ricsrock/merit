@@ -1,0 +1,16 @@
+<table class="table table-bordered table-condensed table-overview">
+  <%= table_row("Name:",@appraisal_form.name) %>
+  <%= table_row("Comments:",@appraisal_form.comments) %>
+  <%= table_row("# Sections:", @appraisal_form.sections.length) %>
+  <%= table_row("# Questions:", @appraisal_form.questions.length) %>
+  <%= table_row("# Feedback Topics:", @appraisal_form.feedback_topics.length) %>
+</table>
+
+<div class="form-actions">
+  <%= link_to 'Index', admin_appraisal_forms_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_admin_appraisal_form_path(@appraisal_form), :class => 'btn' %>
+  <%= link_to 'Delete', admin_appraisal_form_path(@appraisal_form), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+  <%= link_to 'Add/Remove Sections', add_remove_sections_admin_appraisal_form_path(@appraisal_form), :class => 'btn' %>
+  <%= link_to 'Add/Remove Feedback Topics', add_remove_feedback_topics_admin_appraisal_form_path(@appraisal_form), :class => 'btn' %>
+  <%= link_to 'Preview', preview_admin_appraisal_form_path(@appraisal_form), :class => 'btn btn-success' %>
+</div>

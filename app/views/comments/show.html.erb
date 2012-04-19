@@ -1,0 +1,12 @@
+<table class="table table-bordered table-condensed table-overview">
+	  <%= table_row("appraisal_id:",@comment.appraisal_id) %>
+	  <%= table_row("section_id:",@comment.section_id) %>
+	  <%= table_row("Commenter_id:",@comment.commenter_id) %>
+	  <%= table_row("Note:",@comment.note) %>
+</table>
+
+<div class="form-actions">
+  <%= link_to 'Back', comments_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_comment_path(@comment), :class => 'btn' %>
+  <%= link_to 'Delete', comment_path(@comment), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

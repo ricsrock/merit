@@ -1,0 +1,16 @@
+<h1>Store</h1><hr>
+
+<table class="table table-bordered table-condensed table-overview">
+	  <%= table_row("Name:",@store.name) %>
+</table>
+
+<div id="employees">
+	<%= render :partial => 'employees' %>
+</div>
+
+<% content_for :sidebar do -%>
+	<%= link_to 'add employment', new_employment_path(:store_id => @store.id), :remote => true %>
+	<div id="add_employment">
+		
+	</div>
+<% end -%>

@@ -1,0 +1,68 @@
+<% if @store %>
+	<% @store.employments.each do |employment| %>
+		<table class="table table-bordered">
+			<%= table_row("Name:", employment.person.full_name) %>
+			<%= table_row("Position:", employment.position.name) %>
+			<%= table_row("Start Date:", employment.start_date) %>
+			<%= table_row("End Date:", employment.end_date) if employment.end_date %>
+			<tr>
+				<td>
+					<div class="btn-group">
+					  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+					    Action
+					    <span class="caret"></span>
+					  </a>
+					  <ul class="dropdown-menu">
+					    <li>
+					    	<%= link_to 'Destroy', employment, confirm: 'Are you sure you want to destroy this employment record? It will be as if this person was never employed. Click OK to destroy, click cancel to keep the employment record.', method: :delete %>
+					    </li>
+						<li>
+							<%= link_to 'End Now', end_employment_path(employment) %>
+						</li>
+						<li>
+							<%= link_to 'Edit Dates', set_dates_employment_path(employment) %>
+						</li>
+					  </ul>
+					</div>
+				</td>
+				<td>
+					<%= status_badge(employment) %>
+				</td>
+			</tr>
+		</table>
+	<% end %>
+<% elsif @person %>
+	<% @person.employments.each do |employment| %>
+		<table class="table table-bordered">
+			<%= table_row("Store:", employment.store.name) %>
+			<%= table_row("Position:", employment.position.name) %>
+			<%= table_row("Start Date:", employment.start_date) %>
+			<%= table_row("End Date:", employment.end_date) if employment.end_date %>
+			<tr>
+				<td>
+					<div class="btn-group">
+					  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+					    Action
+					    <span class="caret"></span>
+					  </a>
+					  <ul class="dropdown-menu">
+					    <li>
+					    	<%= link_to 'Destroy', employment, confirm: 'Are you sure you want to destroy this employment record? It will be as if this person was never employed. Click OK to destroy, click cancel to keep the employment record.', method: :delete %>
+					    </li>
+						<li>
+							<%= link_to 'End Now', end_employment_path(employment) %>
+						</li>
+						<li>
+							<%= link_to 'Edit Dates', set_dates_employment_path(employment) %>
+						</li>
+					  </ul>
+					</div>
+				</td>
+				<td>
+					<%= status_badge(employment) %>
+				</td>
+			</tr>
+		</table>
+	<% end %>
+<% end %>
+		

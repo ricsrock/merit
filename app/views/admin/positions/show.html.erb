@@ -1,0 +1,35 @@
+<h2>Details for Position: <%= @position.name %></h2><hr>
+<table class="table table-bordered table-condensed table-overview">
+	  <%= table_row("Name:",@position.name) %>
+	  <%= table_row("Notes:",@position.notes) %>
+	  <%= table_row("Min Pay:",show_min_pay_rate(@position)) %>
+	  <%= table_row("Max Pay:",show_max_pay_rate(@position)) %>
+	  <%= table_row("Annual Min Pay", number_to_currency(@position.annual_min_pay)) %>
+	  <%= table_row("Annual Max Pay", number_to_currency(@position.annual_max_pay)) %>
+	  <%= table_row("Exempt:", check_box_tag("hi", "1", @position.exempt, :disabled => true)) %>
+</table>
+
+<div class="small">
+	<b>Note:</b> Annualized pay rates are based on 2080 hours per year. Hourly rate x 2080 = Annual Pay.
+</div>
+
+<div class="form-actions">
+  <%= link_to 'Index', admin_positions_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_admin_position_path(@position), :class => 'btn' %>
+  <%= link_to 'Delete', admin_position_path(@position), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>
+
+<% content_for :sidebar do -%>
+	<% Store.all(:order => :name).each do |store| %>
+		<div class="well">	
+			<h5><%= link_to store.name, store_path(store) %></h5><hr>
+			<ul>
+				<% Employment.for_store(store.id).for_position(@position.id).current.each do |employment| %>
+					<li>
+						<%= employment.person.full_name %>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+<% end -%>

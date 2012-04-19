@@ -1,0 +1,14 @@
+<table class="table table-bordered table-condensed table-overview">
+	  <%= table_row("Name:",@section.name) %>
+	  <%= table_row("Appraiser_comments:",@section.appraiser_comments) %>
+	  <%= table_row("Created_by:",@section.created_by) %>
+	  <%= table_row("Updated_by:",@section.updated_by) %>
+	  <%= table_row("Appraisal_form_id:",@section.appraisal_form_id) %>
+</table>
+
+<div class="form-actions">
+  <%= link_to 'Index', admin_sections_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_admin_section_path(@section), :class => 'btn' %>
+  <%= link_to 'Delete', admin_section_path(@section), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+  <%= link_to 'Add/Remove Questions', add_remove_questions_admin_section_path(@section), :class => 'btn' %>
+</div>

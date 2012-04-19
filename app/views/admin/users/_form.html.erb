@@ -1,0 +1,22 @@
+<%= simple_form_for([:admin,@user], :html => { :class => 'form-horizontal' }) do |f| %>
+	<fieldset>
+		<legend>
+			<%= controller.action_name.capitalize %> User
+		</legend><br>
+		  <div class="form-inputs">
+		    <%= f.input :last_name %>
+		    <%= f.input :first_name %>
+		    <%= f.input :login %>
+		    <%= f.input :email %>
+			<%= f.input :person_name, :input_html => {data: {autocomplete_source: search_people_path}}, :hint => "You must first create a person record for this user." %>
+			<%= f.association :roles, :as => :check_boxes, :hint => "Note: Supervisors need security role 'executive' and authorization (below) for their store(s)." %>
+			<%= f.input :authorized_store_tokens, :label => "Authorized Stores", :input_html => {"data-pre" => @user.authorized_stores.map(&:attributes).to_json},
+			 									  :hint => "Stores this user needs to access."%>
+		  </div>
+
+		  <div class="form-actions">
+		    <%= f.submit nil, :class => 'btn btn-primary' %>
+		    <%= link_to 'Cancel', admin_users_path, :class => 'btn' %>
+		  </div>
+  	</fieldset>
+<% end %>

@@ -1,0 +1,41 @@
+<h3>Appraisal Form: <%= @appraisal_form.name %></h3>
+<hr>
+
+<table class="table table-bordered">
+	<% @appraisal_form.sections.each do |section| %>
+		<tr>
+			<th>
+				Section: <%= section.name %>
+				<span style="float:right;">
+					1 &nbsp; 2  &nbsp; 3  &nbsp; 4  &nbsp; 5  &nbsp; n/a
+				</span>
+			</th>
+		<tr>
+			<td>
+				<ol>
+					<% section.questions.each do |question| %>
+						<li style="float:none;clear:both;">
+							<%= question.form_text %>
+							<span style="float:right;"><%= render :partial => "response", :locals => {:questioning_id => question.id} %></span>
+						</li>
+					<% end %>
+				</ol>
+			</td>
+		</tr>
+		<tr>
+			<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Appraiser Comments:</th>
+		</tr>
+	<% end %>
+		<tr>
+			<th>Feedback Topics</th>
+		</tr>
+	<% @appraisal_form.feedback_topics.each do |fbt| %>
+		<tr>
+			<th>
+				<%= fbt.form_text %>
+			</th>
+		</tr>
+	<% end %>
+</table>
+
+<div class="form-actions"><%= link_to 'Back', admin_appraisal_form_path(@appraisal_form), :class => 'btn btn-primary' %></div>

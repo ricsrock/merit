@@ -1,0 +1,7 @@
+<% @person.employments.each do |employment| %>
+	<table class="table table-bordered overview" style="width:100%;">
+		<%= table_row("Position:", employment.position.name) %>
+		<%= table_row("Store:", link_to(employment.store.name, store_path(employment.store.id))) %>
+		<%= table_row("Start Date:", employment.start_date) %>
+	</table>
+<% end %>

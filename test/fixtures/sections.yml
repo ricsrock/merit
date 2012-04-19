@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  appraiser_comments: MyText
+  created_by: MyString
+  updated_by: MyString
+  appraisal_form_id: 1
+
+two:
+  name: MyString
+  appraiser_comments: MyText
+  created_by: MyString
+  updated_by: MyString
+  appraisal_form_id: 1

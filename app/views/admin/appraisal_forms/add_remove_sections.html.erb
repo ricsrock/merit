@@ -1,0 +1,17 @@
+<h3>Add/Remove Sections for Appraisal Form: <%= @appraisal_form.name %></h3>
+
+<div id="add_remove_box">
+	<div id="available_sections" style="float:left;width:49%;">
+		<%= render :partial => "available_sections" %>
+	</div>
+	<div id="included_sections" style="float:right;width:49%;">
+		<%= render :partial => "included_sections" %>
+	</div>
+</div>
+<div style="float:none;clear:both;">
+	&nbsp;
+</div>
+
+<div class="form-actions">
+	<%= link_to 'Done', admin_appraisal_form_path(@appraisal_form), :class => 'btn btn-primary' %>
+</div>

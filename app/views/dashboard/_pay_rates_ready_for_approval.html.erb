@@ -1,0 +1,28 @@
+<% if current_user.person %>
+	<table class="table table-bordered">
+		<tr>
+			<th>Created At</th>
+			<th>Created By</th>
+			<th>Person</th>
+			<th>Employment</th>
+			<th>Rate</th>
+			<th>Pay Rate Status</th>
+			<th>Actions</th>
+		</tr>
+		<% current_user.pay_rates_ready_for_approval.each do |pr| %>
+			<tr>
+				<td><%= pr.created_at.to_time.to_s(:long) %></td>
+				<td><%= pr.created_by %></td>
+				<td><%= pr.person.full_name %></td>
+				<td><%= pr.person.current_employments.collect {|m| m.position_and_store}.to_sentence %></td>
+				<td><%= pr.rate %>/<%= pr.cadence %></td>
+				<td><%= pr.status %></td>
+				<td><%= link_to "approve", approve_pay_rate_path(pr) %></td>
+			</tr>
+		<% end %>
+	</table>
+<% else %>
+	<div class="alert alert-error">
+		You must associate the current user's account with a person record in the the system.
+	</div>
+<% end %>

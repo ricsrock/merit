@@ -1,0 +1,47 @@
+<h1>Listing Pay_rates</h1>
+
+<table class="table table-striped" id="sortable_table">
+  <thead>
+	  <tr>
+		
+			<th>Rate</th>
+		
+			<th>Cadence</th>
+		
+			<th>Status</th>
+		
+			<th>Approved_at</th>
+		
+			<th>Approved_by</th>
+		
+			<th>Created_by</th>
+		
+			<th>Updated_by</th>
+		
+			<th>Person_id</th>
+		
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @pay_rates.each do |pay_rate| %>
+	  <tr>
+	    <td><%= pay_rate.rate %></td>
+	    <td><%= pay_rate.cadence %></td>
+	    <td><%= pay_rate.status %></td>
+	    <td><%= pay_rate.approved_at %></td>
+	    <td><%= pay_rate.approved_by %></td>
+	    <td><%= pay_rate.created_by %></td>
+	    <td><%= pay_rate.updated_by %></td>
+	    <td><%= pay_rate.person_id %></td>
+	    <td><%= link_to 'Edit', edit_pay_rate_path(pay_rate), :class => 'btn btn-mini' %>
+	    	<%= link_to 'Destroy', pay_rate, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Pay_rate", new_pay_rate_path, :class => 'btn btn-primary'  %>

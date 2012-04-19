@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  notes: MyText
+  min_pay: MyString
+  max_pay: MyString
+
+two:
+  name: MyString
+  notes: MyText
+  min_pay: MyString
+  max_pay: MyString

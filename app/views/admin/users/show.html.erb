@@ -1,0 +1,18 @@
+<h1>Details for User: <%= @user.login %></h1><hr>
+
+<table class="table table-bordered table-condensed table-overview">
+	  <%= table_row("Last Name:",@user.last_name) %>
+	  <%= table_row("First Name:",@user.first_name) %>
+	  <%= table_row("Login:",@user.login) %>
+	  <%= table_row("Email:",@user.email) %>
+	  <%= table_row("Person:", @user.person.full_name) if @user.person %>
+	  <%= table_row("Authorized Stores:", @user.authorized_stores.collect {|s| s.name}.to_sentence) %>
+	  <%= table_row("Security Roles:", @user.roles.collect {|r| r.name}.to_sentence) %>
+</table>
+
+<div class="form-actions">
+  <%= link_to 'Index', admin_users_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_admin_user_path(@user), :class => 'btn' %>
+  <%= link_to 'Delete', admin_user_path(@user), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+  <%= link_to 'Change Password', edit_password_admin_user_path(@user), :class => 'btn btn-primary' %>
+</div>

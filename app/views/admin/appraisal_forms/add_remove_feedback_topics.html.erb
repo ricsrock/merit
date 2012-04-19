@@ -1,0 +1,17 @@
+<h3>Add/Remove Feedback Topics for Appraisal Form: <%= @appraisal_form.name %></h3>
+
+<div id="add_remove_box">
+	<div id="available_feedback_topics" style="float:left;width:49%;">
+		<%= render :partial => "available_feedback_topics" %>
+	</div>
+	<div id="included_feedback_topics" style="float:right;width:49%;">
+		<%= render :partial => "included_feedback_topics" %>
+	</div>
+</div>
+<div style="float:none;clear:both;">
+	&nbsp;
+</div>
+
+<div class="form-actions">
+	<%= link_to 'Done', admin_appraisal_form_path(@appraisal_form), :class => 'btn btn-primary' %>
+</div>

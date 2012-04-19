@@ -1,0 +1,9 @@
+<ul>	
+		<% if @appraisal.approved? %>
+			<li>Approved At: <%= @appraisal.approved_at.to_time.to_s(:long) %></li>
+			<li>Approved By: <%= @appraisal.approved_by %></li>
+			<li><%= link_to 'Un-Approve', unapprove_appraisal_path(@appraisal), :remote => true %></li>
+		<% else %>
+			<li>Click here to <%= link_to 'approve', approve_appraisal_path(@appraisal), :remote => true %> now.</li>
+		<% end %>
+	</ul>

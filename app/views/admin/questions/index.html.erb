@@ -1,0 +1,32 @@
+<h1>Listing Questions</h1>
+
+<table class="table table-striped" id="sortable_table">
+  <thead>
+	  <tr>
+	    <th>Name</th>
+	    <th>Form text</th>
+	    <th>Created by</th>
+	    <th>Updated by</th>
+	    <th></th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @questions.each do |question| %>
+	  <tr>
+	    <td><%= link_to question.name, admin_question_path(question) %></td>
+	    <td><%= question.form_text %></td>
+	    <td><%= question.created_by %></td>
+	    <td><%= question.updated_by %></td>
+	    <td><%= link_to 'Edit', edit_admin_question_path(question), :class => 'btn btn-mini' %>
+	    	<%= link_to 'Destroy', admin_question_path(question), confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Question', new_admin_question_path, :class => 'btn btn-primary'  %>

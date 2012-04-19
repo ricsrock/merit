@@ -1,0 +1,20 @@
+<% if current_user.person %>
+	<table class="table table-bordered">
+		<tr>
+			<th>Appraisal Name</th>
+			<th>Percent Complete</th>
+			<th></th>
+		</tr>
+		<% current_user.appraisals_ready_for_review.each do |appraisal| %>
+			<tr>
+				<td><%= link_to appraisal.name, appraisal_path(appraisal) %></td>
+				<td><%= number_to_percentage appraisal.percent_complete %></td>
+				<td><%= link_to 'Review', review_appraisal_path(appraisal), :class => 'btn btn-primary' %></td>
+			</tr>
+		<% end %>
+	</table>
+<% else %>
+	<div class="alert alert-error">
+		You must associate the current user's account with a person record in the system.
+	</div>
+<% end %>

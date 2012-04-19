@@ -1,0 +1,26 @@
+<% if current_user.out_ranks?(@person) %>
+	<table class="table table-striped">
+	   <tr>
+		<th>Created At</th>
+		<th>Appraiser</th>
+		<th>Appraisal Form</th>
+		<th>% Complete</th>
+		<th>Raw Score</th>
+		<th></th>
+	  </tr>
+	<% @person.appraisals.each do |appraisal| %>
+	   <tr>
+		<td><%= appraisal.created_at.to_date.to_s(:long) %></td>
+		<td><%= appraisal.appraiser.full_name %></td>
+		<td><%= appraisal.appraisal_form.name %></td>
+		<td><%= number_to_percentage(appraisal.percent_complete, :precision => 0) %></td>
+		<td><%= appraisal.raw_5_point %></td>
+		<td><%= link_to 'View', view_appraisal_path(appraisal), :class => 'btn' %></td>
+	  </tr>
+	<% end %>
+	</table>
+<% else %>
+	<div class="alert alert-error">
+		You cannot view this person's info.
+	</div>
+<% end %>

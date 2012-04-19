@@ -1,0 +1,16 @@
+<table class="table table-bordered table-condensed table-overview">
+	  <%= table_row("Rate:",@pay_rate.rate) %>
+	  <%= table_row("Cadence:",@pay_rate.cadence) %>
+	  <%= table_row("Status:",@pay_rate.status) %>
+	  <%= table_row("Approved_at:",@pay_rate.approved_at) %>
+	  <%= table_row("Approved_by:",@pay_rate.approved_by) %>
+	  <%= table_row("Created_by:",@pay_rate.created_by) %>
+	  <%= table_row("Updated_by:",@pay_rate.updated_by) %>
+	  <%= table_row("Person_id:",@pay_rate.person_id) %>
+</table>
+
+<div class="form-actions">
+  <%= link_to 'Back', pay_rates_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_pay_rate_path(@pay_rate), :class => 'btn' %>
+  <%= link_to 'Delete', pay_rate_path(@pay_rate), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

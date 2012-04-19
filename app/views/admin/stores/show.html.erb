@@ -1,0 +1,23 @@
+<h2>Details for Store: <%= @store.name %></h2><hr>
+<table class="table table-bordered table-condensed table-overview">
+	  <%= table_row("Name:",@store.name) %>
+</table>
+
+<div class="form-actions">
+  <%= link_to 'Index', admin_stores_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_admin_store_path(@store), :class => 'btn' %>
+  <%= link_to 'Delete', admin_store_path(@store), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>
+
+<% content_for :sidebar do -%>
+	<h2>Current Employees</h2><hr>
+	<div id="all_employments">
+		<%= render :partial => 'employments/employments' %>
+	</div>
+	<div>
+		<%= link_to 'add employment', new_employment_path(:store_id => @store.id), :remote => true %>
+	</div>
+	<div id="add_employment">
+		
+	</div>
+<% end -%>

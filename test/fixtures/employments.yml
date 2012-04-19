@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  person_id: 1
+  position_id: 1
+  store_id: 1
+  start_date: 2012-03-07
+  end_date: 2012-03-07
+
+two:
+  person_id: 1
+  position_id: 1
+  store_id: 1
+  start_date: 2012-03-07
+  end_date: 2012-03-07

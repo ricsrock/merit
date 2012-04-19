@@ -1,0 +1,14 @@
+<fieldset>
+	<legend>
+		Included Sections
+		<p>These sections will be included in this appraisal form.</p>
+	</legend>
+</fieldset>
+<% @appraisal_form.sections.each do |section| %>
+	<div style="float:none;clear:both;">
+		<span style="float:left;margin-right:5px;">
+			<%= link_to(content_tag(:i, nil, :class => "icon-backward"), remove_section_from_admin_appraisal_form_path(@appraisal_form, :section_id => section), :remote => true) %>
+		</span>
+		<span style="float:left;"><%= section.name %></span>
+	</div>
+<% end %>

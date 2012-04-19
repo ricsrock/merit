@@ -1,0 +1,32 @@
+<h1>Listing Sections</h1>
+
+<table class="table table-striped" id="sortable_table">
+  <thead>
+	  <tr>
+		<th>Name</th>
+		<th>Appraiser_comments</th>
+		<th>Created_by</th>
+		<th>Updated_by</th>
+		<th># of Questions</th>
+        <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @sections.each do |section| %>
+	  <tr>
+	    <td><%= link_to section.name, admin_section_path(section) %></td>
+	    <td><%= section.appraiser_comments %></td>
+	    <td><%= section.created_by %></td>
+	    <td><%= section.updated_by %></td>
+	    <td><%= section.questions.length.to_s %></td>
+	    <td><%= link_to 'Edit', edit_admin_section_path(section), :class => 'btn btn-mini' %>
+	    	<%= link_to 'Destroy', admin_section_path(section), confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Section", new_admin_section_path, :class => 'btn btn-primary'  %>

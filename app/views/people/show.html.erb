@@ -1,0 +1,46 @@
+<h2>Details for Person: <%= @person.full_name %></h2><hr>
+<div class="tabbable">
+	<ul class="nav nav-tabs">
+		<li class="active">
+			<a href="#1" data-toggle="tab">Basic Information</a>
+		</li>
+		<li>
+			<a href="#2" data-toggle="tab">Appraisals</a>
+		</li>
+		<li>
+			<a href="#3" data-toggle="tab">Comments</a>
+		</li>
+		<li>
+			<a href="#4" data-toggle="tab">Pay Rates</a>
+		</li>
+	</ul>
+	<div class="tab-content">
+	    <div class="tab-pane active" id="1">
+			<%= render :partial => 'basic_info' %>
+	    </div>
+	    <div class="tab-pane" id="2">
+	        <%= render :partial => 'appraisals' %>
+	    </div>
+		<div class="tab-pane" id="3">
+			<%= render :partial => 'comments' %>
+		</div>
+		<div class="tab-pane" id="4">
+			<%= render :partial => 'pay_rates' %>
+		</div>
+	</div>
+</div>
+
+<div id="employments" style="visibility:hidden;">
+	
+</div>
+
+<% content_for :sidebar do -%>
+	<h2>Positions</h2><hr>
+	<div id="all_employments">
+		<%= render :partial => "employments/employments" %>
+	</div>
+	<%= link_to 'add employment', new_employment_path(:person_id => @person.id), :remote => true %>
+	<div id="add_employment">
+		
+	</div>
+<% end -%>

@@ -1,0 +1,15 @@
+<% if user_signed_in? %>
+  <li>
+    <%= link_to "(#{current_user.login}) my account", user_path(current_user) %>
+  </li>
+  <li class="divider-vertical"></li>
+  <li><%= link_to('logout', destroy_user_session_path, :method => :delete) %></li>
+  <li class="divider-vertical"></li>
+  <li>
+  	<%= link_to 'dashboard', dashboard_url %>
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Login', new_user_session_path)  %>  
+  </li>
+<% end %>

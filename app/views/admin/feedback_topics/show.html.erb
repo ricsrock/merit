@@ -1,0 +1,10 @@
+<table class="table table-bordered table-condensed table-overview">
+	  <%= table_row("Name:",@feedback_topic.name) %>
+	  <%= table_row("Form Text:",@feedback_topic.form_text) %>
+</table>
+
+<div class="form-actions">
+  <%= link_to 'Index', admin_feedback_topics_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_admin_feedback_topic_path(@feedback_topic), :class => 'btn' %>
+  <%= link_to 'Delete', admin_feedback_topic_path(@feedback_topic), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

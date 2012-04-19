@@ -1,0 +1,45 @@
+<h1><%= page_entries_info(@appraisals).html_safe %></h1>
+
+<table class="table table-striped" id="sortable_table">
+  <thead>
+	  <tr>
+		<th>Name</th>
+		<th>Appraisal Form</th>
+		<th>Employee</th>
+		<th>Appraiser</th>
+		<th>Review Period</th>
+		<th>% Complete</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @appraisals.each do |appraisal| %>
+	  <tr>
+	    <td><%= link_to appraisal.name, appraisal_path(appraisal) %></td>
+	    <td><%= appraisal.appraisal_form.name rescue nil %></td>
+	    <td><%= appraisal.employee.full_name rescue nil %></td>
+	    <td><%= appraisal.appraiser.full_name rescue nil %></td>
+	    <td><%= link_to appraisal.review_period.name, admin_review_period_path(appraisal.review_period.id) %></td>
+	    <td><%= number_to_percentage appraisal.percent_completed, :precision => 0 %></td>
+	    <td><%= link_to 'Perform', perform_appraisal_path(appraisal), :class => 'btn btn-mini btn-success' %>
+			<%= link_to 'Edit', edit_appraisal_path(appraisal), :class => 'btn btn-mini' %>
+	    	<%= link_to 'Destroy', appraisal, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<%= paginate @appraisals %>
+
+<br />
+
+<%= link_to "New Appraisal", new_appraisal_path, :class => 'btn btn-primary' %> 
+<%= link_to "Batch-Create Appraisals", setup_batch_appraisals_path, :class => 'btn btn-primary' %>
+
+<br />
+&nbsp;
+
+<% content_for :sidebar do -%>
+	<%= render :partial => "sidebar" %>
+<% end -%>

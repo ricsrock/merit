@@ -1,0 +1,14 @@
+<h1>My Account</h1><hr>
+
+<table class="table table-bordered table-condensed table-overview">
+	  <%= table_row("Last Name:",@user.last_name) %>
+	  <%= table_row("First Name:",@user.first_name) %>
+	  <%= table_row("Login:",@user.login) %>
+	  <%= table_row("Email:",@user.email) %>
+	  <%= table_row("Person:", @user.person.full_name) if @user.person %>
+	  <%= table_row("Security Role(s):", @user.roles.collect {|r| r.name}.to_sentence) %>
+</table>
+
+<div class="form-actions">
+  <%= link_to 'Edit', edit_user_path(@user), :class => 'btn' %>
+</div>

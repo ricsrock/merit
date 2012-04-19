@@ -1,0 +1,26 @@
+<h1>Listing Feedback Topics</h1>
+
+<table class="table table-striped" id="sortable_table">
+  <thead>
+	  <tr>
+			<th>Name</th>
+			<th>Form Text</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @feedback_topics.each do |feedback_topic| %>
+	  <tr>
+	    <td><%= feedback_topic.name %></td>
+	    <td><%= feedback_topic.form_text %></td>
+	    <td><%= link_to 'Edit', edit_admin_feedback_topic_path(feedback_topic), :class => 'btn btn-mini' %>
+	    	<%= link_to 'Destroy', admin_feedback_topic_path(feedback_topic), confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Feedback Topic", new_admin_feedback_topic_path, :class => 'btn btn-primary'  %>

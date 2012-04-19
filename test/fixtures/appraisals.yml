@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  appraisal_form_id: 1
+  employee_id: 1
+  appraiser_id: 1
+  review_period_id: 1
+  percent_complete: MyString
+  raw_score: MyString
+
+two:
+  name: MyString
+  appraisal_form_id: 1
+  employee_id: 1
+  appraiser_id: 1
+  review_period_id: 1
+  percent_complete: MyString
+  raw_score: MyString

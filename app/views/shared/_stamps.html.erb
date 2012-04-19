@@ -1,0 +1,2 @@
+<%= table_row("Created By:", resource.created_by + ' (' + resource.created_at.to_time.to_s(:long) +')') rescue nil %>
+<%= table_row("Updated By:", resource.updated_by + ' (' + resource.updated_at.to_time.to_s(:long) +')') rescue nil %>

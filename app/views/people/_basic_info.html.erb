@@ -1,0 +1,13 @@
+<table class="table table-bordered table-condensed table-overview">
+	  <%= table_row("First_name:",@person.first_name) %>
+	  <%= table_row("Last_name:",@person.last_name) %>
+	  <%= table_row("Employee Number:",@person.employee_number) %>
+	  <%= table_row("Last_review_date:",@person.last_review_date) %>
+	  <%= render :partial => 'shared/stamps', :locals => {:resource => @person} %>
+</table>
+
+<div class="form-actions">
+  <%= link_to 'Index', people_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_person_path(@person), :class => 'btn' %>
+  <%= link_to 'Delete', person_path(@person), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

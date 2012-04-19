@@ -1,0 +1,15 @@
+<fieldset><legend>Filter/Search People</legend><br>
+
+<%= search_form_for @q do |f| %>
+	<div class="form-inputs well">
+		<%= f.label :last_name, "Last Name" %>
+		<%= f.text_field :last_name_cont %>
+		<%= f.label :employee_number, "Employee Number" %>
+		<%= f.text_field :employee_number_cont %>
+	</div>
+	<div class="form-actions">
+		<%= f.submit nil, :class => "btn" %>
+	</div>
+<% end %>
+
+</fieldset>

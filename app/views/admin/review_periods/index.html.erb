@@ -1,0 +1,28 @@
+<h1>Listing Review Periods</h1>
+
+<table class="table table-striped" id="sortable_table">
+  <thead>
+	  <tr>
+			<th>Name</th>
+			<th>Start_date</th>
+			<th>End_date</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @review_periods.each do |review_period| %>
+	  <tr>
+	    <td><%= link_to review_period.name, admin_review_period_path(review_period) %></td>
+	    <td><%= review_period.start_date %></td>
+	    <td><%= review_period.end_date %></td>
+	    <td><%= link_to 'Edit', edit_admin_review_period_path(review_period), :class => 'btn btn-mini' %>
+	    	<%= link_to 'Destroy', admin_review_period_path(review_period), confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Review Period", new_admin_review_period_path, :class => 'btn btn-primary'  %>

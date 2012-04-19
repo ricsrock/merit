@@ -1,0 +1,26 @@
+<h1>Welcome to your dashboard, <%= current_user.first_name %>!</h1><hr>
+
+<h4>My Incomplete Appraisals</h4><hr>
+
+<table class="table table-bordered">
+	<tr>
+		<th>Appraisal Name</th>
+		<th>Percent Complete</th>
+		<th></th>
+	</tr>
+	<% current_user.incomplete_appraisals_responsible_for.each do |appraisal| %>
+		<tr>
+			<td><%= link_to appraisal.name, appraisal_path(appraisal) %></td>
+			<td><%= number_to_percentage appraisal.percent_complete %></td>
+			<td><%= link_to 'Perform', perform_appraisal_path(appraisal), :class => 'btn btn-success' %></td>
+		</tr>
+	<% end %>
+</table>
+
+<h4>Appraisals Ready for My Review</h4><hr>
+
+<%= render :partial => 'appraisals_ready_for_review' %>
+
+<h4>Pay Rates Ready for My Approval</h4><hr>
+
+<%= render :partial => 'pay_rates_ready_for_approval' %>

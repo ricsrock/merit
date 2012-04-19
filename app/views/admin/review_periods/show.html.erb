@@ -1,0 +1,27 @@
+<h2>Details for Review Period: <%= @review_period.name %></h2><hr>
+
+
+<div class"tabbable">
+	<ul class="nav nav-tabs">
+		<li class="active">
+			<a href="#1" data-toggle="tab">Overview</a>
+		</li>
+		<li>
+			<a href="#2" data-toggle="tab">Stats</a>
+		</li>
+		<li>
+			<a href="#3" data-toggle="tab">Charts</a>
+		</li>
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="1">
+			<%= render :partial => 'overview' %>
+		</div>
+		<div class="tab-pane" id="2">
+			<table class="table table-bordered">
+				<%= table_row("# of Appraisals:", @review_period.appraisals.length) %>
+				<%= table_row("# of Completed Appraisals:", @review_period.completed_appraisals.length) %>
+			</table>
+		</div>
+	</div>
+</div>

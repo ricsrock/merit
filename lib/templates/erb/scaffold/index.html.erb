@@ -1,0 +1,28 @@
+<h1>Listing <%= plural_table_name.capitalize %></h1>
+
+<table class="table table-striped" id="sortable_table">
+  <thead>
+	  <tr>
+		<% attributes.each do |attribute| %>
+			<th><%= attribute.name.capitalize %></th>
+		<% end %>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+	  <tr>
+		<%- attributes.each do |attribute| -%>
+	    <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
+		<%- end -%>
+	    <td><%%= link_to 'Edit', edit_<%= singular_table_name %>_path(<%= singular_table_name %>), :class => 'btn btn-mini' %>
+	    	<%%= link_to 'Destroy', <%= singular_table_name %>, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
+	   </td>
+	  </tr>
+	<%% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%%= link_to "New <%=singular_table_name.capitalize %>", new_<%= singular_table_name %>_path, :class => 'btn btn-primary'  %>

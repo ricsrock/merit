@@ -1,0 +1,18 @@
+<%= simple_form_for(@user, :html => { :class => 'form-horizontal' }) do |f| %>
+	<fieldset>
+		<legend>
+			Update My Account
+		</legend><br>
+		  <div class="form-inputs">
+		    <%= f.input :last_name %>
+		    <%= f.input :first_name %>
+		    <%= f.input :login %>
+		    <%= f.input :email %>
+		  </div>
+
+		  <div class="form-actions">
+		    <%= f.submit "Update My Account", :class => 'btn btn-primary' %>
+		    <%= link_to 'Cancel', user_path(@user), :class => 'btn' %>
+		  </div>
+  	</fieldset>
+<% end %>

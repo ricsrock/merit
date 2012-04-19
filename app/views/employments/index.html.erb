@@ -1,0 +1,32 @@
+<h1>Listing All Employments</h1>
+
+<table class="table table-striped" id="sortable_table">
+  <thead>
+	  <tr>
+			<th>Person</th>
+			<th>Position</th>
+			<th>Store</th>
+			<th>Start Date</th>
+			<th>End Date</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @employments.each do |employment| %>
+	  <tr>
+	    <td><%= link_to employment.person.full_name, person_path(employment.person) rescue nil %></td>
+	    <td><%= link_to employment.position.name, position_path(employment.position) %></td>
+	    <td><%= link_to employment.store.name, store_path(employment.store) %></td>
+	    <td><%= employment.start_date %></td>
+	    <td><%= employment.end_date %></td>
+	    <td><%= link_to 'Edit', edit_employment_path(employment), :class => 'btn btn-mini' %>
+	    	<%= link_to 'Destroy', employment, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Employment", new_employment_path, :class => 'btn btn-primary'  %>

@@ -1,0 +1,14 @@
+<fieldset>
+	<legend>
+		Available Questions
+		<p>These questions are available to be added to this form section.</p>
+	</legend>
+</fieldset>
+<% @section.available_questions.each do |question| %>
+	<div style="float:none;clear:both;">
+		<span><%= question.form_text %></span>
+		<span style="float:right;margin-left:5px;">
+			<%= link_to(content_tag(:i, nil, :class => "icon-forward"), add_question_to_admin_section_path(@section, :question_id => question), :remote => true) %>
+		</span>
+	</div>
+<% end %>

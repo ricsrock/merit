@@ -1,0 +1,31 @@
+<h1>Listing Comments</h1>
+
+<table class="table table-striped" id="sortable_table">
+  <thead>
+	  <tr>
+		
+			<th>Appraisal ID</th>
+			<th>Section ID</th>
+			<th>Commenter ID</th>
+			<th>Note</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @comments.each do |comment| %>
+	  <tr>
+	    <td><%= comment.appraisal_id %></td>
+	    <td><%= comment.section_id %></td>
+	    <td><%= comment.commenter_id %></td>
+	    <td><%= comment.note %></td>
+	    <td><%= link_to 'Edit', edit_comment_path(comment), :class => 'btn btn-mini' %>
+	    	<%= link_to 'Destroy', comment, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Comment", new_comment_path, :class => 'btn btn-primary'  %>

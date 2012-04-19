@@ -1,0 +1,24 @@
+<% if current_user.out_ranks?(@person) %>
+	<table class="table table-bordered" id="sortable_table">
+		<thead>
+			<tr>
+				<th>Appraisal</th>
+				<th>Reference</th>
+				<th>Note</th>
+			</tr>
+		</thead>
+		<tbody>
+	<% @person.comments.each do |comment| %>
+		<tr>
+			<td><%= link_to comment.appraisal.name, appraisal_path(comment.appraisal) %></td>
+			<td><%= comment.reference %></td>
+			<td><%= comment.note %></td>
+		</tr>
+		<% end %>
+		</tbody>
+	</table>
+<% else %>
+	<div class="alert alert-error">
+		You cannot view this person's info.
+	</div>
+<% end %>

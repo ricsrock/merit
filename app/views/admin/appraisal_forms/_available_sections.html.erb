@@ -1,0 +1,14 @@
+<fieldset>
+	<legend>
+		Available Sections
+		<p>These sections are available to be added to this appraisal form.</p>
+	</legend>
+</fieldset>
+<% @appraisal_form.available_sections.each do |section| %>
+	<div style="float:none;clear:both;">
+		<span style="float:left;"><%= section.name %></span>
+		<span style="float:right;margin-left:5px;">
+			<%= link_to(content_tag(:i, nil, :class => "icon-forward"), add_section_to_admin_appraisal_form_path(@appraisal_form, :section_id => section), :remote => true) %>
+		</span>
+	</div>
+<% end %>

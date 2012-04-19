@@ -1,0 +1,13 @@
+<table class="table table-bordered table-condensed table-overview">
+	  <%= table_row("Name:",@review_period.name) %>
+	  <%= table_row("Start Date:",@review_period.start_date) %>
+	  <%= table_row("End Date:",@review_period.end_date) %>
+	  <%= table_row("Default Non-Exempt Form:", @review_period.default_non_exempt_form.name) rescue nil %>
+	  <%= table_row("Default Exempt Form:", @review_period.default_exempt_form.name) rescue nil %>
+</table>
+
+<div class="form-actions">
+  <%= link_to 'Index', admin_review_periods_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_admin_review_period_path(@review_period), :class => 'btn' %>
+  <%= link_to 'Delete', admin_review_period_path(@review_period), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

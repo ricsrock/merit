@@ -1,0 +1,26 @@
+<h1>Listing Appraisal Forms</h1>
+
+<table class="table table-striped" id="sortable_table">
+  <thead>
+	  <tr>
+	    <th>Name</th>
+	    <th>Comments</th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @appraisal_forms.each do |appraisal_form| %>
+	  <tr>
+	    <td><%= link_to appraisal_form.name, admin_appraisal_form_path(appraisal_form) %></td>
+	    <td><%= appraisal_form.comments %></td>
+	    <td><%= link_to 'Edit', edit_admin_appraisal_form_path(appraisal_form), :class => 'btn btn-mini' %></td>
+	    <td><%= link_to 'Destroy', admin_appraisal_form_path(appraisal_form), confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %></td>
+	  </tr>
+	<% end %>
+</tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Appraisal form', new_admin_appraisal_form_path, :class => 'btn btn-primary' %>

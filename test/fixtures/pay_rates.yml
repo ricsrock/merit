@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  rate: 9.99
+  cadence: MyString
+  status: MyString
+  approved_at: 2012-04-14 13:11:48
+  approved_by: MyString
+  created_by: MyString
+  updated_by: MyString
+  person_id: 1
+
+two:
+  rate: 9.99
+  cadence: MyString
+  status: MyString
+  approved_at: 2012-04-14 13:11:48
+  approved_by: MyString
+  created_by: MyString
+  updated_by: MyString
+  person_id: 1

@@ -1,0 +1,34 @@
+<h1>Listing Users</h1>
+
+<table class="table table-striped" id="sortable_table">
+  <thead>
+	  <tr>
+			<th>First_name</th>
+			<th>Last_name</th>
+			<th>Login</th>
+			<th>Role(s)</th>
+			<th>Email</th>
+			<th>Person Record</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @users.each do |user| %>
+	  <tr>
+	    <td><%= link_to user.first_name, user_path(user) %></td>
+	    <td><%= user.last_name %></td>
+	    <td><%= user.login %></td>
+		<td><%= user.roles.collect {|r| r.name}.to_sentence %></td>
+	    <td><%= user.email %></td>
+		<td><%= person_indicator(user) %></td>
+	    <td><%= link_to 'Edit', edit_user_path(user), :class => 'btn btn-mini' %>
+	    	<%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New User", new_user_path, :class => 'btn btn-primary'  %>

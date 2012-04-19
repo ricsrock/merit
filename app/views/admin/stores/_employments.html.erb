@@ -1,0 +1,12 @@
+<% if @store.current_employments.empty? %>
+	<div class="well">
+		No employees
+	</div>
+<% else %>
+	<% @store.current_employments.each do |employment| %>
+		<table class="table table-bordered">
+			<%= table_row("Name:", link_to(employment.person.full_name, person_path(employment.person.id))) rescue nil %>
+			<%= table_row("Position:", employment.position.name) rescue nil %>
+		</table>
+	<% end %>
+<% end %>

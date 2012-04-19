@@ -1,0 +1,14 @@
+<fieldset>
+	<legend>
+		Available Feedback Topics
+		<p>These feedback topics are available to be added to this appraisal form.</p>
+	</legend>
+</fieldset>
+<% @appraisal_form.available_feedback_topics.each do |fbt| %>
+	<div style="float:none;clear:both;">
+		<span style="float:left;"><%= fbt.name %></span>
+		<span style="float:right;margin-left:5px;">
+			<%= link_to(content_tag(:i, nil, :class => "icon-forward"), add_feedback_topic_to_admin_appraisal_form_path(@appraisal_form, :feedback_topic_id => fbt), :remote => true) %>
+		</span>
+	</div>
+<% end %>

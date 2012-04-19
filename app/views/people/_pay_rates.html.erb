@@ -1,0 +1,22 @@
+<% if current_user.out_ranks?(@person) %>
+	<table class="table table-bordered">
+		<tr>
+			<th>Created At</th>
+			<th>Updated At</th>
+			<th>Status</th>
+			<th>Rate</th>
+		</tr>
+		<% @person.pay_rates.each do |pr| %>
+			<tr>
+				<td><%= pr.created_at.to_time.to_s(:long) %></td>
+				<td><%= pr.updated_at.to_time.to_s(:long) %></td>
+				<td><%= pr.status %></td>
+				<td><%= pr.rate %>/<%= pr.cadence %></td>
+			</tr>
+		<% end %>
+	</table>
+<% else %>
+	<div class="alert alert-error">
+		You cannot view this person's info.
+	</div>
+<% end %>

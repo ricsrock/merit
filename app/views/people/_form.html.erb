@@ -1,0 +1,22 @@
+<%= simple_form_for(@person, :html => { :class => 'form-horizontal' }) do |f| %>
+	<fieldset>
+		<legend>
+			<%= controller.action_name.capitalize %> Person
+		</legend><br>
+		  <div class="form-inputs">
+		    <%= f.input :first_name %>
+		    <%= f.input :last_name %>
+			<%= f.input :employee_number %>
+			<%= f.simple_fields_for :pay_rates, @pay_rate do |pay_rate_form| %>
+				<%= pay_rate_form.input :rate, :hint => "No dollar sign, just dollars and cents, e.g. 7.75" %>
+				<%= pay_rate_form.input :cadence, :collection => PayRate::CADENCES %>
+				<%= pay_rate_form.input :status, :as => :hidden %>
+			<% end %>
+		  </div>
+
+		  <div class="form-actions">
+		    <%= f.submit nil, :class => 'btn btn-primary' %>
+		    <%= link_to 'Cancel', people_path, :class => 'btn' %>
+		  </div>
+  	</fieldset>
+<% end %>

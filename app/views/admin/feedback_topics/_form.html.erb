@@ -1,0 +1,16 @@
+<%= simple_form_for([:admin,@feedback_topic], :html => { :class => 'form-horizontal' }) do |f| %>
+	<fieldset>
+		<legend>
+			<%= controller.action_name.capitalize %> Feedback Topic
+		</legend><br>
+		  <div class="form-inputs">
+		    <%= f.input :name %>
+		    <%= f.input :form_text %>
+		  </div>
+
+		  <div class="form-actions">
+		    <%= f.submit nil, :class => 'btn btn-primary' %>
+		    <%= link_to 'Cancel', admin_feedback_topics_path, :class => 'btn' %>
+		  </div>
+  	</fieldset>
+<% end %>

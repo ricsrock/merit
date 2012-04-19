@@ -1,0 +1,26 @@
+<h1>Listing Roles</h1>
+
+<table class="table table-striped" id="sortable_table">
+  <thead>
+	  <tr>
+		
+			<th>Name</th>
+		
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @roles.each do |role| %>
+	  <tr>
+	    <td><%= role.name %></td>
+	    <td><%= link_to 'Edit', edit_role_path(role), :class => 'btn btn-mini' %>
+	    	<%= link_to 'Destroy', role, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Role", new_role_path, :class => 'btn btn-primary'  %>

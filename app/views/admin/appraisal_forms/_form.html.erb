@@ -1,0 +1,16 @@
+<%= simple_form_for([:admin,@appraisal_form], :html => { :class => 'form-horizontal' }) do |f| %>
+  <fieldset>
+  	<legend>
+  		<%= controller.action_name.capitalize %> Appraisal Form
+  	</legend><br>
+		  <div class="form-inputs">
+		    <%= f.input :name %>
+		    <%= f.input :comments %>
+		  </div>
+
+		  <div class="form-actions">
+		    <%= f.submit nil, :class => 'btn btn-primary' %>
+		    <%= link_to 'Cancel', admin_appraisal_forms_path, :class => 'btn' %>
+		  </div>
+  </fieldset>
+<% end %>

@@ -1,0 +1,26 @@
+<h3>Batch-Create Appraisals</h3>
+<div class="small">
+	This action will create a batch of blank appraisals for every employee in every store based on the settings you choose.
+</div><hr>
+<div class="well">
+	<p>Notes:</p>
+	<ul>
+		<li>Appraisals will not be created for any store that does not have a manager. This person will be set as the appraiser for employees of that store.</li>
+		<li>
+			Appraisals will not be created for any store that does not have an authorized user with security role, "executive". This person will be set as the appraisal reviewer for employees that store.
+		</li>
+		<li>
+			You may re-run this script after you updating/changing settings in order to create any previously missed appraisals... duplicate appraisals will not be created.</li>
+		<li>
+			The initial settings for an appraisal (appraiser, reviewer, appraisal form) may be changed after the appraisal is created (but before the appraisal is performed).
+		</li>
+	</ul>
+</div>
+<hr>
+
+<%= simple_form_for :appraisal_batch, :url => '/appraisals/create_batch', :html => {:class => 'form-horizontal'} do |f| %>
+	<div class="well">
+		<%= f.input :review_period_id, :collection => ReviewPeriod.all(:order => :name) %>
+	</div>
+	<%= f.button :submit, "Batch-Create Appraisals", :class => 'btn btn-primary' %>
+<% end %>

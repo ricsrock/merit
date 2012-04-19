@@ -1,0 +1,14 @@
+<fieldset>
+	<legend>
+		Included Questions
+		<p>These questions will be included in this form section.</p>
+	</legend>
+</fieldset>
+<% @section.questions.each do |question| %>
+	<div style="float:none;clear:both;">
+		<span style="float:left;margin-right:5px;">
+			<%= link_to(content_tag(:i, nil, :class => "icon-backward"), remove_question_from_admin_section_path(@section, :question_id => question), :remote => true) %>
+		</span>
+		<span><%= question.form_text %></span>
+	</div>
+<% end %>

@@ -1,0 +1,19 @@
+<%= simple_form_for([:admin,@review_period], :html => { :class => 'form-horizontal' }) do |f| %>
+	<fieldset>
+		<legend>
+			<%= controller.action_name.titleize %> Review Period
+		</legend>
+		  <div class="form-inputs">
+		    <%= f.input :name %>
+		    <%= f.input :start_date %>
+		    <%= f.input :end_date %>
+			<%= f.input :default_non_exempt_form_id, :collection => AppraisalForm.all(:order => :name) %>
+			<%= f.input :default_exempt_form_id, :collection => AppraisalForm.all(:order => :name) %>
+		  </div>
+
+		  <div class="form-actions">
+		    <%= f.submit nil, :class => 'btn btn-primary' %>
+		    <%= link_to 'Cancel', admin_review_periods_path, :class => 'btn' %>
+		  </div>
+  	</fieldset>
+<% end %>

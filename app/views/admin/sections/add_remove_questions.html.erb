@@ -1,0 +1,19 @@
+<h3>Add/Remove Questions for Section: <%= @section.name %></h3>
+
+<div id="add_remove_box" style="float:none;clear:both;">
+	<div id="available_questions" style="float:left;width:49%;">
+		<%= render :partial => "available_questions" %>
+	</div>
+	<div id="included_questions" style="float:right;width:49%;">
+		<%= render :partial => "included_questions" %>
+	</div>
+
+</div>
+
+<div style="float:none;clear:both;">
+	&nbsp;
+</div>
+
+<div class="form-actions">
+	<%= link_to 'Done', admin_section_path(@section), :class => 'btn btn-primary' %>
+</div>
