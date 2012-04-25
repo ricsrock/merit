@@ -1,18 +1,20 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :authentication_keys => [:login]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :last_name, :first_name, :login, :person_name, :role_ids, :authorized_store_tokens
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :last_name, :first_name, :login, :person_name, :role_ids, :authorized_store_tokens, :current_password
   
   validates_uniqueness_of :login
+  
+  acts_as_audited
   
   #acts_as_stampable
   
   attr_reader :authorized_store_tokens
-  cattr_accessor :the_user
+  cattr_accessor :the_user, :current_password
   
   has_one :person
   has_many :appraisals_responsible_for, :through => :person
@@ -126,6 +128,6 @@ class User < ActiveRecord::Base
   end
   
   def out_ranks?(person)
-    self.person.rank > person.rank ? true : false
+    (self.person.rank > person.rank or self.admin? or self.person.id == person.id) ? true : false
   end
 end

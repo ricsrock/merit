@@ -15,7 +15,7 @@ Merit::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs
   config.assets.digest = true
@@ -50,7 +50,26 @@ Merit::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-
+  config.action_mailer.default_url_options = { :host => 'merit.kenyanco.com' }
+  
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+     :address => 'localhost',
+     :port => 25,
+     :domain => 'merit.kenyanco.com',
+     :authentication => :plain,
+     :user_name => "merit@stocks.kenyanco.com",
+     :password => "TireM@5808",
+     :enable_starttls_auto => false
+  }
+  
+  
+  Merit::Application.config.middleware.use ExceptionNotifier,
+    :email_prefix => "[Merit] ",
+    :sender_address => %{"notifier" <notifier@example.com>},
+    :exception_recipients => %w{ricsrock@gmail.com}
+  
+  
   # Enable threaded mode
   # config.threadsafe!
 

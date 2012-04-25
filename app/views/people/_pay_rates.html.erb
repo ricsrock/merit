@@ -5,6 +5,7 @@
 			<th>Updated At</th>
 			<th>Status</th>
 			<th>Rate</th>
+			<th></th>
 		</tr>
 		<% @person.pay_rates.each do |pr| %>
 			<tr>
@@ -12,9 +13,13 @@
 				<td><%= pr.updated_at.to_time.to_s(:long) %></td>
 				<td><%= pr.status %></td>
 				<td><%= pr.rate %>/<%= pr.cadence %></td>
+				<td><%= link_to 'Destroy', pay_rate_path(pr), :method => :delete, :confirm => 'Are you sure you want to destroy this pay rate?', :class => 'btn btn-danger' %></td>
 			</tr>
 		<% end %>
 	</table>
+	<div class="form-actions">
+		<%= link_to 'New Pay Rate', new_pay_rate_path(:person_id => @person), :class => 'btn btn-primary' %>
+	</div>
 <% else %>
 	<div class="alert alert-error">
 		You cannot view this person's info.

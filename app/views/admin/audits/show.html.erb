@@ -1,0 +1,31 @@
+<h3>Details for Audit Record</h3><br>
+
+<table class="table table-bordered">
+	<%= table_row("ID:", @audit.id) %>
+	<%= table_row("BY:", @audit.user.login) %>
+	<%= table_row("AT:", @audit.created_at.to_time.to_s(:long)) %>
+	<%= table_row("RECORD:", record_name(@audit)) %>
+	<%= table_row("RECORD TYPE:", @audit.auditable_type) %>
+	<%= table_row("ACTION:", @audit.action) %>
+</table>
+
+<h4>Changes</h4><hr>
+
+<table class="table table-bordered">
+	<tr>
+		<th>Attribute</th>
+		<th></th>
+		<th>Old Value</th>
+		<th></th>
+		<th>New Value</th>
+	</tr>
+	<% @audit.audited_changes.each do |att, values| %>
+		<tr>
+			<td><%= att %></td>
+			<td></td>
+			<td><%= values.is_a?(Array) ? values.first : 'did not exist' %></td>
+			<td></td>
+			<td><%= values.is_a?(Array) ? values.last : values %></td>
+		</tr>
+	<% end %>
+</table>

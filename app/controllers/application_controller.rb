@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
    # is used by model security that does not have access to the
    # controller#current_user method.  It is called as a before_filter.
    def set_the_user
-     User.the_user = current_user if User.the_user
+     User.the_user = current_user
    end
 
 #def permission_denied

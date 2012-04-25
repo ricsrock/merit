@@ -1,6 +1,6 @@
 <h1><%= page_entries_info(@people).html_safe %></h1><hr>
 
-
+<%= link_to "New Person", new_person_path, :class => 'btn btn-primary'  %>
 
 <table class="table table-striped" id="sortable_table">
   <thead>
@@ -32,8 +32,6 @@
 <%= paginate @people %>
 
 <br />
-
-<%= link_to "New Person", new_person_path, :class => 'btn btn-primary'  %>
 
 <br />
 &nbsp;

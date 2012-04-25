@@ -24,7 +24,7 @@ class Appraisal < ActiveRecord::Base
   after_create  :set_name
   
   acts_as_stampable
-  
+  acts_as_audited
   
  #ransacker :for_person, 
  #          :formatter => proc {|term| joins(:employee).where(:people => {:last_name_cont => term, :first_name_cont => term})} do |parent|
@@ -125,7 +125,13 @@ class Appraisal < ActiveRecord::Base
   end
   
   def self.accessible_to_user(user)
-    user.accessible_appraisals
+    if user.role_names.include?('admin')
+      Appraisal
+    elsif user.role_names.include?('executive') or user.role_names.include?('manager')
+      Appraisal.joins(:employee => {:employments => {:store => :store_authorizations}}).where(:store_authorizations => {:user_id => user.id}).where("employments.end_date IS NULL OR employments.end_date > ?", Date.today)
+    elsif user.role_name.include?('user')
+      Appraisal.where(:appraiser_id => user.id)
+    end
   end
   
   

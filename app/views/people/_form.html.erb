@@ -4,7 +4,7 @@
 			<%= controller.action_name.capitalize %> Person
 		</legend><br>
 		  <div class="form-inputs">
-		    <%= f.input :first_name %>
+		    <%= f.input :first_name, :input_html => {:class => 'initial-focus'} %>
 		    <%= f.input :last_name %>
 			<%= f.input :employee_number %>
 			<%= f.simple_fields_for :pay_rates, @pay_rate do |pay_rate_form| %>

@@ -25,4 +25,9 @@ module ApplicationHelper
     result
   end
   
+  def resource_path(resource)
+    controller = resource.class.name.downcase.pluralize
+    "/#{controller}/#{resource.id}"
+  end
+  
 end

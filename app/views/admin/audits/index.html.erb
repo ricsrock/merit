@@ -1,0 +1,24 @@
+<h4>Listing Audit Records</h4><br>
+
+<table class='table table-striped'>
+	<tr>
+		<th>ID</th>
+		<th>BY</th>
+		<th>AT</th>
+		<th>RECORD</th>
+		<th>RECORD TYPE</th>
+		<th>ACTION</th>
+		<th></th>
+	</tr>
+	<% @audits.all.each do |audit| %>
+		<tr>
+			<td><%= audit.id %></td>
+			<td><%= audit.user.login %></td>
+			<td><%= audit.created_at.to_time.to_s(:long) %></td>
+			<td><%= record_name(audit) %></td>
+			<td><%= audit.auditable_type %></td>
+			<td><%= audit.action %></td>
+			<td><%= link_to 'details', admin_audit_path(audit) %></td>
+		</tr>
+	<% end %>
+</table>

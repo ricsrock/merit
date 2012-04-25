@@ -12,5 +12,10 @@ class Response < ActiveRecord::Base
                 record.appraisal.set_percent_complete}
                 
   acts_as_stampable
+  acts_as_audited
+  
+  def reference
+    self.appraisal.name + ": " + self.question.name
+  end
   
 end

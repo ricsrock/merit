@@ -2,12 +2,27 @@
 
 <h4>Viewing Appraisal: <%= @appraisal.name %></h4>
 
-<fieldset><legend><%= @appraisal.name %></legend>
-	<ul>
-		<li>Employee: <%= link_to @appraisal.employee.full_name, person_path(@appraisal.employee) %></li>
-		<li>Appraisal Form: <%= @appraisal.appraisal_form.name %></li>
-		<li>Appraiser: <%= @appraisal.appraiser.full_name %></li>
-	</ul>
+<fieldset><legend><%= @appraisal.name %></legend><br>
+	<div class="well pull-left">		
+		<ul>
+			<li>Employee: <%= link_to @appraisal.employee.full_name, person_path(@appraisal.employee) %></li>
+			<li>Appraisal Form: <%= @appraisal.appraisal_form.name %></li>
+			<li>Appraiser: <%= @appraisal.appraiser.full_name rescue nil %></li>
+			<li>Reviewer: <%= @appraisal.reviewer.full_name rescue nil %></li>
+			<li>Approved By: <%= @appraisal.approved_by %></li>
+			<li>Approved At: <%= @appraisal.approved_at.to_time.to_s(:long) rescue nil %></li>
+		</ul>
+	</div>
+	<div class="well pull-right">		
+		<ul>
+			<li>Certifier: <%= @appraisal.certifier.full_name rescue nil %></li>
+			<li>Certified By: <%= @appraisal.certified_by %></li>
+			<li>Certified At: <%= @appraisal.certified_at.to_time.to_s(:long) rescue nil %></li>
+			<li>Last Updated By: <%= @appraisal.updated_by %></li>
+			<li>Last Updated At: <%= @appraisal.updated_at.to_time.to_s(:long) rescue nil %></li>
+		</ul>
+	</div>
+	
 </fieldset>
 
 <% @appraisal.appraisal_form.sections.each do |section| %>

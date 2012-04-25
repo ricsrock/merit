@@ -8,6 +8,7 @@ class Position < ActiveRecord::Base
   has_many :employments, :dependent => :destroy
   
   acts_as_stampable
+  acts_as_audited
   
   def self.pay_unit_for(pay_cadence_name)
     Position::CADENCES.select {|w| w[:name] == "#{pay_cadence_name}"}.first[:unit]

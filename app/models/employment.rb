@@ -10,6 +10,7 @@ class Employment < ActiveRecord::Base
   attr_accessor :person_name
   
   acts_as_stampable
+  acts_as_audited
   
   scope :for_store, lambda {|store_id| where(:store_id => store_id)}
   scope :current, where('end_date > ? OR end_date IS NULL', Date.today.to_s)

@@ -6,5 +6,5 @@ class Question < ActiveRecord::Base
   validates_uniqueness_of :name
   
   acts_as_stampable
-  
+  acts_as_audited
 end

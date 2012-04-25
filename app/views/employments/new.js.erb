@@ -2,3 +2,6 @@ $('#add_employment').html("<%=j render :partial => 'employments/form' %>");
 $('#employment_person_name').autocomplete({
 	source: "/people/search"
 });
+$(document).ready( function() {
+   $(':input.initial-focus:first').focus(); // choose first just in case
+});

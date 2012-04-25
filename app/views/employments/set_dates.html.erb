@@ -1,7 +1,7 @@
 <h3>Editing Dates for Employment: <%= @employment.person.full_name %>, <%= @employment.position.name %> at <%= @employment.store.name %></h3><hr>
 
 <%= simple_form_for @employment, :url => custom_dates_employment_path(@employment), :html => {:class => 'form-horizontal'} do |f| %>
-	<%= f.input :start_date %>
+	<%= f.input :start_date, :start_year => 1980, :end_year => Date.today.year + 1 %>
 	<%= f.input :end_date, :include_blank => true %>
-	<%= f.submit 'Set Custom Dates', :class => 'btn btn-primary' %>
+	<%= f.submit 'Save Custom Dates', :class => 'btn btn-primary' %>
 <% end %>

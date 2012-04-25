@@ -1,20 +1,20 @@
 class Person < ActiveRecord::Base
   belongs_to :user
   
-  has_many :employments
+  has_many :employments, :dependent => :destroy
   has_many :current_employments, :class_name => 'Employment', :conditions => ['employments.end_date IS NULL OR employments.end_date > ?', Date.today.to_s]
   has_many :stores_employed, :through => :current_employments, :source => :store
   has_many :positions, :through => :employments
   has_many :current_positions, :through => :current_employments, :source => :position
-  has_many :appraisals, :class_name => 'Appraisal', :foreign_key => :employee_id
+  has_many :appraisals, :class_name => 'Appraisal', :foreign_key => :employee_id, :dependent => :destroy
   has_many :appraisals_responsible_for, :class_name => 'Appraisal', :foreign_key => :appraiser_id
   has_many :incomplete_appraisals_responsible_for, :class_name => 'Appraisal', :foreign_key => :appraiser_id, :conditions => ['percent_complete != ? OR percent_complete IS NULL', '100.0']
   has_many :comments, :through => :appraisals
   has_many :coworkers, :through => :stores_employed, :source => :employees
-  has_many :pay_rates
+  has_many :pay_rates, :dependent => :destroy
   
   #after_initialize :create_initial_pay_rate
-  
+  acts_as_audited
   acts_as_stampable
   
   validates_presence_of [:first_name, :last_name, :employee_number]

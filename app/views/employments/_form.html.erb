@@ -1,4 +1,4 @@
-<%= simple_form_for(@employment, :html => { :class => 'form-vertical', :'data-type' => 'script' }, :remote => true) do |f| %>
+<%= simple_form_for(@employment, :html => { :class => 'form-vertical', :'data-type' => 'script' }, :remote => true, :validate => true) do |f| %>
 	<fieldset>
 		<legend>
 			<%= controller.action_name.capitalize %> Employment
@@ -7,22 +7,22 @@
 			<% if @person %>
 				<%= f.input :person_id, :as => :hidden, :input_html => {:value => @person.id} %>
 			<% else %>
-				<%= f.input :person_name, :input_html => {data: {autocomplete_source: search_people_path}} %>
+				<%= f.input :person_name, :input_html => {data: {autocomplete_source: search_people_path}, :class => 'initial-focus'} %>
 			<% end %>
-		    <%= f.input :position_id, :collection => Position.all(:order => :name) %>
+		    <%= f.input :position_id, :collection => Position.all(:order => :name), :input_html => {:class => 'initial-focus'} %>
 		    <% if @store %>
 				<%= f.input :store_id, :as => :hidden, :input_html => {:value => @store.id} %>
 			<% else %>
 				<%= f.input :store_id, :collection => current_user.accessible_stores %>
 			<% end %>
-		    <%= f.input :start_date %>
+		    <%= f.input :start_date, :start_year => 1980, :end_year => Date.today.year + 1 %>
 		    <%= f.input :end_date, :include_blank => true %>
 			<%= f.input :resource_type, :as => :hidden, :input_html => {:value => @resource.class.name} %>
 		  </div>
 
 		  <div class="form-actions">
 		    <%= f.submit nil, :class => 'btn btn-primary' %>
-		    <%= link_to 'Cancel', employments_path, :class => 'btn' %>
+		    <%= link_to 'Cancel', cancel_employments_path, :class => 'btn', :remote => true %>
 		  </div>
   	</fieldset>
 <% end %>

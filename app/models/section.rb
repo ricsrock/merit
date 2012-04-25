@@ -4,6 +4,7 @@ class Section < ActiveRecord::Base
   has_many :sectionings, :dependent => :destroy
   
   acts_as_stampable
+  acts_as_audited
   
   def available_questions
     Question.all(:conditions => ['questions.id NOT IN

@@ -109,4 +109,8 @@ class EmploymentsController < ApplicationController
     flash[:notice] = "Employment dates have been updated."
     redirect_to session[:original_uri]
   end
+  
+  def cancel
+    
+  end
 end

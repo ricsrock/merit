@@ -6,6 +6,7 @@ class Comment < ActiveRecord::Base
   validates_presence_of :appraisal_id, :comment_type
   
   acts_as_stampable
+  acts_as_audited
   
   scope :for_appraisal, lambda {|appraisal_id| where(:appraisal_id => appraisal_id).where(:comment_type => 'Appraisal')}
   scope :for_appraisal_either_type, lambda {|appraisal_id| where(:appraisal_id => appraisal_id)}

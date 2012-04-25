@@ -35,6 +35,8 @@ gem "best_in_place"
 gem "ransack"
 gem "acts_as_stampable", '~> 0.0.3'
 gem 'exception_notification'
+gem "acts_as_audited", '~> 2.1.0'
+gem "client_side_validations", '~> 3.1.4'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

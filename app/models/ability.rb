@@ -14,7 +14,7 @@ class Ability
        end
        can :manage, Store
        can :manage, Employment
-       can [:read, :create, :update], Appraisal do |appraisal|
+       can [:read, :create, :update, :view], Appraisal do |appraisal|
          user.authorized_for_appraisal?(appraisal.id)
        end
        can :perform, Appraisal do |appraisal|

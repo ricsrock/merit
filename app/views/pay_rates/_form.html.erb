@@ -1,22 +1,17 @@
 <%= simple_form_for(@pay_rate, :html => { :class => 'form-horizontal' }) do |f| %>
 	<fieldset>
 		<legend>
-			<%= controller.action_name.capitalize %> Pay_rate
-		</legend>
+			<%= controller.action_name.capitalize %> Pay Rate for <%= @person.full_name %>
+		</legend><br>
 		  <div class="form-inputs">
 		    <%= f.input :rate %>
-		    <%= f.input :cadence %>
-		    <%= f.input :status %>
-		    <%= f.input :approved_at %>
-		    <%= f.input :approved_by %>
-		    <%= f.input :created_by %>
-		    <%= f.input :updated_by %>
-		    <%= f.input :person_id %>
+		    <%= f.input :cadence, :collection => PayRate::CADENCES %>
+			<%= f.input :person_id, :as => :hidden %>
 		  </div>
 
 		  <div class="form-actions">
 		    <%= f.submit nil, :class => 'btn btn-primary' %>
-		    <%= link_to 'Cancel', pay_rates_path, :class => 'btn' %>
+		    <%= link_to 'Cancel', person_path(@person), :class => 'btn' %>
 		  </div>
   	</fieldset>
 <% end %>

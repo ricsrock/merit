@@ -17,6 +17,7 @@
 //= require bootstrap
 //= require jquery.purr
 //= require best_in_place
+//= require rails.validations
 
 
 $(function(){ 
@@ -35,4 +36,28 @@ $(function(){
 
 $(function(){
 	$("#employment_person_name").autocomplete();
+	$('#results-list').click(function(){
+	   $(this).toggle();
+	});
+});
+
+$(function(){
+	$(".search-query").observe_field(1, function( ) {
+	 	var form = $(this).parents("form");
+		var url = form.attr("action");
+		var formData = form.serialize();
+		$.get(url, formData, function(html) {
+			$("#results").html(html);
+		});
+	});
+});
+
+$(document).ready( function() {
+   $('input.initial-focus:first').focus(); // choose first just in case
+});
+
+
+$(function(){
+	$("#results-list").live("blur", function(){$(this).hide();
+		});
 });

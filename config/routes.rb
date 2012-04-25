@@ -12,12 +12,16 @@ Merit::Application.routes.draw do
   resources :users
   resources :comments
   resources :stores
+  resources :accounts
 
   resources :employments do
     member do
       get 'end'
       get 'set_dates'
       put 'custom_dates'
+    end
+    collection do
+      get 'cancel'
     end
   end
 
@@ -122,6 +126,7 @@ Merit::Application.routes.draw do
        resources :review_periods
        resources :feedback_topics
        match 'dashboard' => 'dashboard#index', :as => :dashboard
+       resources :audits
      end
 
   # You can have the root of your site routed with "root"
@@ -137,6 +142,7 @@ Merit::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+  match 'search/do' => 'search#do', :as => :do_search
   match 'dashboard/access_denied' => 'dashboard#access_denied', :as => :dashboard_access_denied
   match 'dashboard/index' => 'dashboard#index', :as => :dashboard
 end

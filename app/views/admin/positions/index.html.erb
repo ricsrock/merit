@@ -7,8 +7,7 @@
 			<th>Notes</th>
 			<th>Min Pay</th>
 			<th>Max Pay</th>
-			<th>Annual Min</th>
-			<th>Annual Max</th>
+			<th>Rate Cadence</th>
 			<th>Exempt</th>
 			<th>Rank</th>
 	    <th></th>
@@ -21,8 +20,7 @@
 	    <td><%= position.notes %></td>
 	    <td><%= number_to_currency position.min_pay %></td>
 	    <td><%= number_to_currency position.max_pay %></td>
-	    <td><%= number_to_currency position.annual_min_pay %></td>
-	    <td><%= number_to_currency position.annual_max_pay %></td>
+		<td><%= position.pay_cadence %></td>
 		<td><%= check_box_tag('hi', '1', position.exempt, :disabled => true) %></td>
 		<td><%= best_in_place position, :rank, :type => :input, :nil => " ", :path => [:admin, position] %></td>
 	    <td><%= link_to 'Edit', edit_admin_position_path(position), :class => 'btn btn-mini' %>

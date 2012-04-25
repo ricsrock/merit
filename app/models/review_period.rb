@@ -8,6 +8,7 @@ class ReviewPeriod < ActiveRecord::Base
   validates_presence_of :default_non_exempt_form_id, :default_exempt_form_id
   
   acts_as_stampable
+  acts_as_audited
   
   def batch_create_appraisals
     Store.all.each do |store|

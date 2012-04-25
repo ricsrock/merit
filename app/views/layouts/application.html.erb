@@ -3,10 +3,10 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Merit</title>
-  <%= stylesheet_link_tag    "styles", :media => "all" %>
-  <%= stylesheet_link_tag    "application", "token-input-facebook", :media => "all" %>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "jquery.tablesorter.min" %>
+  <%= javascript_include_tag "jquery.observe_field.js" %>
   <%# javascript_include_tag :high_charts %>
   <%= csrf_meta_tags %>
 </head>
@@ -23,18 +23,29 @@
 	        <div class="nav-collapse">
 	          <ul class="nav pull-left">
 				<% if current_user %>
-	            <li><%= link_to "Dashboard", dashboard_url %></li>
-				<li class="divider-vertical"></li>
-	            <li><%= link_to "Appraisals", appraisals_path %></li>
-	            <li class="divider-vertical"></li>
-			    <li><%= link_to "People", people_path %></li>
-				<li class="divider-vertical"></li>
-			    <li><%= link_to "Stores", stores_path %></li>
-	            <% end %>
-				<li class="divider-vertical"></li>
-			  	<li>
-			  		<%= link_to 'Admin', admin_dashboard_url %>
-			  	</li>
+		            <li><%= link_to "Dashboard", dashboard_url %></li>
+					<li class="divider-vertical"></li>
+		            <li><%= link_to "Appraisals", appraisals_path %></li>
+		            <li class="divider-vertical"></li>
+				    <li><%= link_to "People", people_path %></li>
+					<li class="divider-vertical"></li>
+				    <li><%= link_to "Stores", stores_path %></li>
+					<li class="divider-vertical"></li>
+					<% if current_user.admin? %>
+					  	<li>
+					  		<%= link_to 'Admin', admin_dashboard_url %>
+					  	</li>
+						<li class="divider-vertical"></li>
+					<% end %>
+					<li>
+						<%= form_tag do_search_url, :method => :get, :remote => true, :class => 'navbar-search pull-left' do %>
+							<%= text_field_tag :q, params[:q], :class => 'search-query', :placeholder => 'Search Person, Store, Appraisal' %>
+						<% end %>
+						<div id="results-area" style="position:absolute;top:36px;right:-95px;z-index:99000;">
+						
+						</div>
+					</li>
+				  <% end %>
 	          </ul>
 			  <ul class="nav pull-right">
 			  	<%= render 'devise/menu/login_items' %>

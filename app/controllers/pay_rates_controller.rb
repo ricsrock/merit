@@ -26,8 +26,9 @@ class PayRatesController < ApplicationController
   # GET /pay_rates/new
   # GET /pay_rates/new.json
   def new
-    @pay_rate = PayRate.new
-
+    session[:original_uri] = request.referer
+    @pay_rate = PayRate.new(:person_id => params[:person_id])
+    @person = Person.find(params[:person_id])
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @pay_rate }
@@ -42,11 +43,13 @@ class PayRatesController < ApplicationController
   # POST /pay_rates
   # POST /pay_rates.json
   def create
+    
     @pay_rate = PayRate.new(params[:pay_rate])
+    @pay_rate.status = 'proposed'
 
     respond_to do |format|
       if @pay_rate.save
-        format.html { redirect_to @pay_rate, notice: 'Pay rate was successfully created.' }
+        format.html { redirect_to session[:original_uri], notice: 'Pay rate was successfully created.' }
         format.json { render json: @pay_rate, status: :created, location: @pay_rate }
       else
         format.html { render action: "new" }
@@ -74,11 +77,12 @@ class PayRatesController < ApplicationController
   # DELETE /pay_rates/1
   # DELETE /pay_rates/1.json
   def destroy
+    session[:original_uri] = request.referer
     @pay_rate = PayRate.find(params[:id])
     @pay_rate.destroy
 
     respond_to do |format|
-      format.html { redirect_to pay_rates_url }
+      format.html { redirect_to session[:original_uri] }
       format.json { head :no_content }
     end
   end

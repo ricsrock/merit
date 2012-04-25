@@ -1,11 +1,12 @@
 class Store < ActiveRecord::Base
-  has_many :employments
+  has_many :employments, :dependent => :destroy
   has_many :current_employments, :class_name => 'Employment', :conditions => ["employments.end_date IS NULL OR employments.end_date > '#{Date.today.to_s}'"]
   has_many :employees, :through => :current_employments, :source => :person
   has_many :store_authorizations
   has_many :authorized_users, :through => :store_authorizations, :source => :user
   
   acts_as_stampable
+  acts_as_audited
   
 # def current_employments
 #   Employment.joins(:store).where('employments.end_date' < Date.today.to_s).where(['stores.id = ?', self.id])
